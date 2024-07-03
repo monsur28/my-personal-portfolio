@@ -61,7 +61,7 @@ const SkillSet = () => {
           <ul className="flex flex-wrap justify-center">
             {skills.technologies.map((skill, index) => (
               <li key={index} className="text-lg m-4 text-center">
-                <skill.icon size={48} className="mb-2 text-blue-600" />
+                <skill.icon size={48} className="mb-2 text-blue-600 mx-auto" />
                 <p>{skill.name}</p>
               </li>
             ))}
@@ -74,7 +74,7 @@ const SkillSet = () => {
           <ul className="flex flex-wrap justify-center">
             {skills.toolsFrameworks.map((skill, index) => (
               <li key={index} className="text-lg m-4 text-center">
-                <skill.icon size={48} className="mb-2 text-blue-600" />
+                <skill.icon size={48} className="mb-2 text-blue-600 mx-auto" />
                 <p>{skill.name}</p>
               </li>
             ))}
