@@ -38,8 +38,8 @@ const Contact = () => {
 
   return (
     <div className="container mx-auto my-10 p-5 bg-white rounded-lg shadow-md">
-      <h2 className="text-4xl font-bold text-center mb-8">Contact Me</h2>
-      <div className="flex justify-center mb-8">
+      <h2 className="text-2xl md:text-4xl font-bold text-center mb-8">Contact Me</h2>
+      <div className="flex flex-wrap justify-center mb-8 space-y-4 md:space-y-0 md:space-x-4">
         <a
           href="mailto:monsur286512@gmail.com"
           target="_blank"
