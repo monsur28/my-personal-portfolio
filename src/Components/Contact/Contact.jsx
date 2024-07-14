@@ -30,8 +30,8 @@ const Contact = () => {
           setFormData({ name: "", email: "", message: "" });
         },
         (error) => {
-          console.log(error.text);
-          alert("Message failed to send.");
+          console.log();
+          alert(`Message failed to send.${error.text}`);
         }
       );
   };
