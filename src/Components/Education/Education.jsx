@@ -15,7 +15,7 @@ const EducationSection = () => {
   ];
 
   return (
-    <div className="bg-gray-100 py-16">
+    <div className=" py-16">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-8">Education</h2>
         <hr className="border-gray-300 my-4" />

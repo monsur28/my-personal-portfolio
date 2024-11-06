@@ -1,7 +1,31 @@
+import { useState, useEffect } from "react";
 import { Link as ScrollLink } from "react-scroll";
-import logo from "/src/assets/logo.png";
+import logo from "../../assets/Abul Monsur.png";
+import darkLogo from "../../assets/Abul Monsur(White).png"; // Import dark mode logo
 
 const Navbar = () => {
+  // State to manage theme (light or dark)
+  const [theme, setTheme] = useState("light");
+
+  // Effect to set theme on mount
+  useEffect(() => {
+    // Check local storage for saved theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    }
+  }, []);
+
+  // Toggle theme function
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
+  // Navigation links
   const navlinks = (
     <>
       <li>
@@ -43,8 +67,8 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100">
-      <div className="navbar-start">
+    <div className="navbar flex justify-between">
+      <div className="">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -69,13 +93,16 @@ const Navbar = () => {
             {navlinks}
           </ul>
         </div>
-        <div className="w-44">
-          <img src={logo} alt="" />
+        <div className="w-28">
+          <img src={theme === "light" ? logo : darkLogo} alt="Abul Monsur" />
         </div>
       </div>
-      <div className="navbar-end hidden lg:flex">
+      <div className="hidden navbar-end lg:flex">
         <ul className="menu menu-horizontal px-1">{navlinks}</ul>
       </div>
+      <button onClick={toggleTheme} className="btn text-black btn-outline">
+        {theme === "light" ? "🌙" : "☀️"}
+      </button>
     </div>
   );
 };
