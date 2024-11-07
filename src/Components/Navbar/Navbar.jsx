@@ -100,7 +100,10 @@ const Navbar = () => {
       <div className="hidden navbar-end lg:flex">
         <ul className="menu menu-horizontal px-1">{navlinks}</ul>
       </div>
-      <button onClick={toggleTheme} className="btn text-black btn-outline">
+      <button
+        onClick={toggleTheme}
+        className="btn text-black dark:text-white btn-outline"
+      >
         {theme === "light" ? "🌙" : "☀️"}
       </button>
     </div>

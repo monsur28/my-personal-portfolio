@@ -1,14 +1,17 @@
 import { Typewriter } from "react-simple-typewriter";
 import person from "../../assets/Monsur Logo.jpg";
-// import background from "../../assets/pattern.png";
+
 const About = () => {
   return (
-    <div className="flex items-center justify-around gap-20 mt-20">
-      <div className="flex flex-col-reverse lg:flex-row items-center  gap-20">
-        <div className="mx-auto">
-          <h1 className="text-5xl mt-2">Abul Monsur Mohammad Kachru</h1>
-          <div>
-            <h3 className="text-2xl mt-2">
+    <div className="flex flex-col items-center justify-center gap-10 mt-10 lg:mt-20">
+      <div className="flex flex-col-reverse lg:flex-row items-center gap-10 lg:gap-20">
+        {/* Text Section */}
+        <div className="max-w-2xl text-center lg:text-left">
+          <h1 className="text-3xl lg:text-5xl font-bold mt-2">
+            Abul Monsur Mohammad Kachru
+          </h1>
+          <div className="mt-2">
+            <h3 className="text-xl lg:text-2xl">
               <span>
                 <Typewriter
                   words={[
@@ -25,7 +28,7 @@ const About = () => {
               </span>
             </h3>
           </div>
-          <p className="max-w-2xl  mt-2">
+          <p className="mt-4 text-base lg:text-lg">
             I am a frontend web developer with a passion for building responsive
             and interactive web applications. My expertise lies in translating
             design concepts into functional, high-performance web interfaces.
@@ -64,11 +67,13 @@ const About = () => {
             }
           `}</style>
         </div>
+
+        {/* Image Section */}
         <div className="rounded-full shadow-lg shadow-pink-200/40">
           <img
             src={person}
-            alt=""
-            className="rounded-full w-56 h-56 object-cover border border-solid border-gray-300"
+            alt="Abul Monsur Mohammad Kachru"
+            className="rounded-full w-56 h-56 sm:w-48 sm:h-48 lg:w-56 lg:h-56 object-cover border border-solid border-gray-300"
           />
         </div>
       </div>

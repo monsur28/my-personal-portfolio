@@ -14,7 +14,6 @@ import { RiTailwindCssFill } from "react-icons/ri";
 import { TbBrandSocketIo } from "react-icons/tb";
 import { FaDatabase, FaHtml5, FaCss3Alt, FaReact } from "react-icons/fa";
 import { IoLogoFirebase } from "react-icons/io5";
-import { GiCrossedSabres } from "react-icons/gi";
 
 SwiperCore.use([Autoplay]);
 
@@ -42,7 +41,6 @@ const projects = [
     githubClientLink: "https://github.com/azaaaaaaaaad/booknest",
     githubServerLink: "https://github.com/monsur28/medical-camp-server",
     image: BookNest,
-    fullScreenshot: BookNest, // Add the full screenshot path
   },
   {
     name: "Medical Camp || Camp Management",
@@ -108,14 +106,10 @@ const projects = [
 ];
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [expandedIndex, setExpandedIndex] = useState(null);
 
-  const openModal = (project) => {
-    setSelectedProject(project);
-  };
-
-  const closeModal = () => {
-    setSelectedProject(null);
+  const toggleDescription = (index) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
   };
 
   return (
@@ -135,94 +129,77 @@ const Projects = () => {
       >
         {projects.map((project, index) => (
           <SwiperSlide key={index}>
-            <div
-              className="bg-white rounded-lg cursor-pointer shadow-lg overflow-hidden h-96 hover:shadow-2xl transform hover:-translate-y-2 transition duration-300 ease-in-out relative"
-              onClick={() => openModal(project)}
-            >
-              <div className="relative group">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition duration-300 ease-in-out relative flex flex-col min-h-full">
+              <div className="h-48 relative">
                 <img
                   src={project.image}
                   alt={project.name}
-                  className="w-full h-48 object-cover transition-transform duration-300 cursor-pointer"
-                  // Open modal on image click
+                  className="w-full h-full object-cover transition-transform duration-300"
                 />
               </div>
-              <div className="p-6 min-h-screen overflow-hidden">
+              <div className="p-6 flex flex-col h-full">
                 <h3 className="text-2xl font-semibold mb-2">{project.name}</h3>
-                <p className="text-gray-700 text-sm line-clamp-3">
-                  {project.description.slice(0, 100)}...
+                <p className="text-gray-700 text-sm flex-grow">
+                  {expandedIndex === index
+                    ? project.description
+                    : project.description.slice(0, 150) + "..."}
                 </p>
+                <button
+                  onClick={() => toggleDescription(index)}
+                  className="text-blue-600 text-sm mt-2"
+                >
+                  {expandedIndex === index ? "See Less" : "See More"}
+                </button>
+                <div className="mt-4 flex-grow">
+                  <div className="flex space-x-4 mb-4">
+                    {project.technologies.map((tech, index) => (
+                      <div key={index} className="text-gray-600">
+                        {tech}
+                      </div>
+                    ))}
+                  </div>
+                  <ul className="list-disc list-inside text-gray-700">
+                    {project.features.map((feature, index) => (
+                      <li key={index}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="flex justify-between items-center mt-4">
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-blue-600 hover:text-blue-800"
+                  >
+                    <FaExternalLinkAlt className="mr-2" />
+                    Live Demo
+                  </a>
+                  <div className="flex space-x-4">
+                    <a
+                      href={project.githubClientLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-gray-600 hover:text-gray-800"
+                    >
+                      <FaGithub className="mr-2" />
+                      Client Code
+                    </a>
+                    <a
+                      href={project.githubServerLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-gray-600 hover:text-gray-800"
+                    >
+                      <FaGithub className="mr-2" />
+                      Server Code
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-
-      {/* Modal for project details */}
-      {selectedProject && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-lg p-6 w-11/12 max-w-2xl animate-fadeIn">
-            <div className="flex justify-between">
-              <h3 className="text-3xl font-semibold mb-4">
-                {selectedProject.name}
-              </h3>
-              <button
-                onClick={closeModal}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-              >
-                <GiCrossedSabres />
-              </button>
-            </div>
-            <hr className="border-gray-500 my-4" />
-
-            <p className="text-gray-700 mb-4">{selectedProject.description}</p>
-            <ul className="mb-4 list-disc list-inside text-gray-700">
-              {selectedProject.features.map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))}
-            </ul>
-            <div className="flex space-x-4 mb-6 justify-center ">
-              {selectedProject.technologies.map((tech, index) => (
-                <div key={index} className="text-gray-600 shadow-lg">
-                  {tech}
-                </div>
-              ))}
-            </div>
-            {/* Links below the card */}
-            <div className="flex justify-between items-center mt-2">
-              <a
-                href={selectedProject.liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center text-blue-600 hover:text-blue-800"
-              >
-                <FaExternalLinkAlt className="mr-2" />
-                Live Demo
-              </a>
-              <div className="flex space-x-4">
-                <a
-                  href={selectedProject.githubClientLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-gray-600 hover:text-gray-800"
-                >
-                  <FaGithub className="mr-2" />
-                  Client Code
-                </a>
-                <a
-                  href={selectedProject.githubServerLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-gray-600 hover:text-gray-800"
-                >
-                  <FaGithub className="mr-2" />
-                  Server Code
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

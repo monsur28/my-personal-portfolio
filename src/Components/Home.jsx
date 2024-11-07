@@ -6,23 +6,23 @@ import Experience from "./Experience/Experience";
 // import Navbar from "./Navbar/Navbar";
 import Projects from "./Projects/Projects";
 import SkillSet from "./SkillSet/SkillSet";
-import background from "../assets/pattern.png";
+// import background from "../assets/pattern.png";
 // import LinkedinPost from "./LinkedingPost/LinkedinPost";
 
-const divStyle = {
-  backgroundImage: `url(${background}) `,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  width: "100%",
-};
-// const overlay = {
-//   opacity: "0.5",
+// const divStyle = {
+//   backgroundImage: `url(${background}) `,
+//   backgroundSize: "cover",
+//   backgroundPosition: "center",
+//   width: "100%",
 // };
+// // const overlay = {
+// //   opacity: "0.5",
+// // };
 
 const Home = () => {
   return (
     <div>
-      <div style={divStyle}>
+      <div>
         <section id="about" className="section">
           <About />
         </section>
