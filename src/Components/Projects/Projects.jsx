@@ -39,7 +39,7 @@ const projects = [
     ],
     liveLink: "https://booknest-self.vercel.app/",
     githubClientLink: "https://github.com/azaaaaaaaaad/booknest",
-    githubServerLink: "https://github.com/monsur28/medical-camp-server",
+    githubServerLink: "https://github.com/monsur28/BookNest-SocketIO-Server",
     image: BookNest,
   },
   {
